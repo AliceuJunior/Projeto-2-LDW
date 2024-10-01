@@ -25,3 +25,6 @@ const UserSchema = new Schema({
         required: [true, "A senha é obrigatória"]
     },
 })
+
+const User = mongoose.model('User', UserSchema);
+export {User};
