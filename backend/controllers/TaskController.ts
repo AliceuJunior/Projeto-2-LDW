@@ -1,15 +1,14 @@
 import { Request, Response } from "express";
-import {User} from "../models/User";
+import {Task} from "../models/Task";
 
-
-class UserController {
+class TaskController {
     public async create(req: Request, res: Response): Promise<void> {
         const { nome, email } = req.body;
         if (!nome && !email) {
             res.status(401).json({ erro: "Forneça o e-mail e senha" });
         }else{
         try {
-            const response = await User.create({ nome, email});
+            const response = await Task.create({ nome, email});
             res.status(200).json(response);
         } catch (e: any) {
                 res.send({ message: e });
@@ -18,8 +17,8 @@ class UserController {
     }
 
 
-    public async list(_: Request, res: Response): Promise<void> {
-        res.send(await User.find(
+    public async Task(_: Request, res: Response): Promise<void> {
+        res.send(await Task.find(
             {},
             {},
             {
@@ -30,7 +29,7 @@ class UserController {
 
     public async delete(req: Request, res: Response): Promise<void> {
         const { id } = req.body;
-        const response = await User.findByIdAndDelete(id);
+        const response = await Task.findByIdAndDelete(id);
         if (response) {
             res.json(response);
         }
@@ -42,7 +41,7 @@ class UserController {
     public async updatemail(req: Request, res: Response): Promise<void> {
         const { id, email } = req.body;
         try {
-            const response = await User.findByIdAndUpdate(
+            const response = await Task.findByIdAndUpdate(
                 id,
                 { email },
                 {
@@ -70,7 +69,7 @@ class UserController {
     public async updatenome(req: Request, res: Response): Promise<void> {
         const { id, nome } = req.body;
         try {
-            const response = await User.findByIdAndUpdate(
+            const response = await Task.findByIdAndUpdate(
                 id,
                 { nome },
                 {
@@ -96,4 +95,4 @@ class UserController {
     }
 }
 
-export default new UserController();
+export default new TaskController();

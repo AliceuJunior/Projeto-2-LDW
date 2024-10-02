@@ -26,7 +26,15 @@ const TaskSchema = new Schema({
     },
     status: {
         type: String,
-        enum: {value: ["Concluido", "Não Concluido"]},
-        default: "Não concluido"
+        enum: {value: ["Pendente", "Concluida", "Atrasada"]},
+        default: "Pendente"
+    },
+    idList: {
+        type: Types.ObjectId,
+        ref: 'List',
+        required: [true, "A lista é obrigatória"]
     }
 })
+
+const Task = mongoose.model('Task', TaskSchema);
+export {Task};

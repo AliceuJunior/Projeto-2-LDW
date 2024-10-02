@@ -30,3 +30,6 @@ const SubTaskSchema = new Schema({
         default: "Não concluido"
     }
 })
+
+const SubTasks = mongoose.model('SubTasks', SubTaskSchema);
+export {SubTasks};

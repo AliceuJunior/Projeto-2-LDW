@@ -24,6 +24,16 @@ const UserSchema = new Schema({
         trim: true,
         required: [true, "A senha é obrigatória"]
     },
+    idList: {
+        type: Types.ObjectId,
+        ref: 'List',
+        required: [true, "A lista é obrigatória"]
+    },
+    idSubTasks: {
+        type: Types.ObjectId,
+        ref: 'SubTasks',
+        required: [true, "A Subtask é obrigatória"]
+    }
 })
 
 const User = mongoose.model('User', UserSchema);
